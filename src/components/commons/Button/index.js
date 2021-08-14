@@ -6,12 +6,13 @@ import { propToStyle } from '../../../theme/utils/propToStyle';
 
 const ButtonGhost = css`
   color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
-  background: transparent; 
+  background: transparent;
 `;
 
 const ButtonDefault = css`
   color: white;
-  background-color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
+  background-color: ${(props) =>
+    get(props.theme, `colors.${props.variant}.color`)};
   color: ${(props) => get(props.theme, `colors.${props.variant}.contrastText`)};
 `;
 
@@ -35,7 +36,7 @@ export const Button = styled.button`
   border-radius: ${(props) => props.theme.borderRadius};
   &:hover,
   &:focus {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   ${breakpointsMedia({
@@ -44,11 +45,20 @@ export const Button = styled.button`
       ${TextStyleVariantsMap.smallestException}
     `,
     md: css`
-     /* From md breakpoint */
-     ${TextStyleVariantsMap.paragraph1}
+      /* From md breakpoint */
+      ${TextStyleVariantsMap.paragraph1}
     `,
   })}
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+  }
 
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `};
   ${propToStyle('margin')}
   ${propToStyle('display')}
 `;
