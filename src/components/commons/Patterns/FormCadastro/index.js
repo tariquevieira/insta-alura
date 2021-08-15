@@ -4,6 +4,10 @@ import { Grid } from '../../../foundation/layout/Grid';
 import Text from '../../../foundation/Text';
 import { Button } from '../../Button';
 import TextFields from '../../Forms/TextFields';
+import { Lottie } from '@crello/react-lottie';
+import successAnimation from './animations/success.json';
+import errorAnimation from './animations/error.json';
+import { stubFalse } from 'lodash';
 
 const formStates = {
   DEFAULT: 'DEFAULT',
@@ -102,10 +106,32 @@ function FormContent() {
         Cadastrar
       </Button>
       {isFormSubmited && submissionStatus === formStates.DONE && (
-        <p>Deu certo</p>
+        <Box>
+          <Lottie
+            width="150px"
+            height="150px"
+            config={{
+              animationData: successAnimation,
+              loop: false,
+              autoplay: true,
+            }}
+          />
+          <p>Usuário cadastrado!! :)</p>
+        </Box>
       )}
       {isFormSubmited && submissionStatus === formStates.ERROR && (
-        <p>Deu errado</p>
+        <Box>
+          <Lottie
+            width="150px"
+            height="150px"
+            config={{
+              animationData: errorAnimation,
+              loop: false,
+              autoplay: true,
+            }}
+          />
+          <p>Infelizmente não foi possivel cadastrar seu usuário!!:(</p>
+        </Box>
       )}
     </form>
   );
